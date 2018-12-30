@@ -22,7 +22,7 @@ public class MembershipManagement {
 
                 if (choice == 0) {
                     throw new InputMismatchException();
-                    reader.nextLine();
+                    // reader.nextLine();
                 }
             }
             catch (InputMismatchException e) {
