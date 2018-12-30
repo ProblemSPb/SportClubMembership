@@ -49,4 +49,41 @@ public class FileHandler {
         }
     }
 
+    // over writing the file
+    // this method is called when we want to remove a member from the club
+    // Every time we want to remove a member from our club, we’ll remove it from the LinkedList first.
+    // Next, we’ll pass this LinkedList as an argument to the overwriteFile() method.
+    // Hence, we need to create a temporary file.
+
+    public void overwriteFile(LinkedList<Member> m) {
+
+        String s;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.temp", false))) {
+            // to loop through the elements in the LinkedList that is passed in
+            for (int i = 0; i < m.size(); i++) {
+                s = m.get(i).toString();
+                writer.write(s + "\n");
+            }
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // deleting the original file and renaming the temp file into members.csv
+
+        try {
+            File f = new File("members.csv");
+            File tf = new File("members.temp");
+
+            f.delete();
+            tf.renameTo(f);
+
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 }
