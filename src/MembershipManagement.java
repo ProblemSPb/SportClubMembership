@@ -51,7 +51,7 @@ public class MembershipManagement {
         System.out.println("2) Remove Member.");
         System.out.println("3) Display Member information.");
 
-        System.out.println("\nPlease select an option(or Enter Q to quit): ");
+        System.out.println("\nPlease select an option(or Enter -1 to quit): ");
         choice = getIntInput();
 
         return choice;
@@ -150,6 +150,33 @@ public class MembershipManagement {
 
     }
 
+    public void printMemberInfo(LinkedList<Member> m) {
+
+        int memberID;
+
+        System.out.print("\nEnter Member ID to display information: ");
+        memberID = getIntInput();
+
+        for (int i = 0; i <m.size(); i++) {
+            if (m.get(i).getMemberID() == memberID) {
+                String[] memberInfo = m.get(i).toString().split(", ");
+                System.out.println("\n\nMember Type = " + memberInfo[0]);
+                System.out.println("Member ID = " + memberInfo[1]);
+                System.out.println("Member Name = " + memberInfo[2]);
+                System.out.println("Membership Fees = " + memberInfo[3]);
+
+                if (memberInfo[0].equals("S")) {
+                    System.out.println("Club ID = " + memberInfo[4]);
+                }
+                else {
+                    System.out.println("Membership point = " + memberInfo[4]);
+                }
+                return;
+            }
+        }
+        System.out.println("\nMember ID not found\n");
+
+    }
 
 }
 
